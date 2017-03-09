@@ -1,0 +1,25 @@
+import axios from 'axios';
+const API_KEY = '6a78596d062df78380eff5944c4e5567';
+const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`;
+
+export const FETCH_WEATHER = 'FETCH_WEATHER';
+
+// action creators always return an action
+// user submits a form that calls the action creator (fetchWeather)
+// and pass it in (city)
+export function fetchWeather(city){
+
+	// craft the url with the passed in 'city'
+	const url = `${ROOT_URL}&q=${city},us`;
+
+	// perform an ajax request and return a promise
+	const request = axios.get(url);
+
+	console.log('Request', request);
+
+	return {
+		type: FETCH_WEATHER,
+		payload: request
+	};
+
+}
